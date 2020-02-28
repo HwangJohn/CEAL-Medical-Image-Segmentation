@@ -1,0 +1,13 @@
+# data
+data/
+
+# tmp project folder
+logs/
+ranks/
+skin_database/
+models/
+
+# etc
+.ipynb_checkpoints/
+.vscode/
+__pycache__/

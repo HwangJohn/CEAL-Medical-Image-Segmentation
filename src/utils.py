@@ -5,6 +5,8 @@ import os
 
 import cv2
 import numpy as np
+import sys
+np.set_printoptions(threshold=sys.maxsize)
 from keras.preprocessing.image import ImageDataGenerator
 from scipy.ndimage.morphology import distance_transform_edt as edt
 
@@ -57,7 +59,19 @@ def compute_uncertain(sample, prediction, model):
         # apply distance transform normalization.
         var = np.var(X, axis=0)
         transform = range_transform(edt(prediction))
-        return np.sum(var * transform)
+        #return np.sum(var * transform)
+        result = np.sum(var * transform)
+        # print('var',var)
+        # print('transform', transform)
+        # print('result', result)
+        # cv2.imshow('result', result)
+        # cv2.waitKey(0)
+        # cv2.imshow('var', var)
+        # cv2.waitKey(0)
+        # cv2.imshow('transform', transform)
+        # cv2.waitKey(0)
+
+        return result
 
     else:
         return np.sum(np.var(X, axis=0))
